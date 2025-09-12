@@ -1,0 +1,71 @@
+<% include layouts/layout %>
+
+<div class="jumbotron bg-primary text-white p-5 rounded">
+    <h1 class="display-4">
+        <i class="bi bi-house-door"></i>
+        Добро пожаловать в WebApp
+    </h1>
+    <p class="lead">
+        Современное веб-приложение с архитектурой клиент-сервер, 
+        построенное на Node.js и Spring Boot
+    </p>
+    <hr class="my-4 bg-white">
+    <p>
+        Используйте навигационное меню для работы с приложением
+    </p>
+    <a class="btn btn-light btn-lg" href="/users" role="button">
+        <i class="bi bi-people"></i>
+        Управление пользователями
+    </a>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="bi bi-server text-primary"></i>
+                    API Сервер
+                </h5>
+                <p class="card-text">
+                    Статус подключения к Backend API:
+                    <% if (apiStatus === 'Доступен') { %>
+                        <span class="badge bg-success">Доступен</span>
+                    <% } else { %>
+                        <span class="badge bg-danger">Недоступен</span>
+                    <% } %>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="bi bi-shield-check text-success"></i>
+                    Безопасность
+                </h5>
+                <p class="card-text">
+                    Приложение использует современные методы защиты данных
+                    и аутентификации пользователей
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="bi bi-database text-info"></i>
+                    База данных
+                </h5>
+                <p class="card-text">
+                    Надежное хранение данных в PostgreSQL
+                    с поддержкой транзакций
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
