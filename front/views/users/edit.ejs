@@ -1,0 +1,82 @@
+<%- include('../layouts/layout', {title: 'Редактировать пользователя'}) %>
+
+<%- content %>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Редактировать пользователя: <%= user.name %></h4>
+                </div>
+                <div class="card-body">
+                    <form action="/users/<%= user.id %>?_method=PUT" method="POST">
+                        <input type="hidden" name="_method" value="PUT">
+                        
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Имя пользователя</label>
+                            <input type="text" class="form-control" id="name" name="name" 
+                                   value="<%= user.name %>" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email адрес</label>
+                            <input type="email" class="form-control" id="email" name="email" 
+                                   value="<%= user.email %>" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Новый пароль (оставьте пустым, если не меняется)</label>
+                            <input type="password" class="form-control" id="password" name="password" 
+                                   placeholder="Введите новый пароль">
+                            <div class="form-text">Оставьте поле пустым, если не хотите менять пароль</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="role" class="form-label">Роль</label>
+                            <select class="form-select" id="role" name="role">
+                                <option value="user" <%= user.role === 'user' ? 'selected' : '' %>>Пользователь</option>
+                                <option value="admin" <%= user.role === 'admin' ? 'selected' : '' %>>Администратор</option>
+                                <option value="moderator" <%= user.role === 'moderator' ? 'selected' : '' %>>Модератор</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="isActive" name="isActive" 
+                                   <%= user.isActive ? 'checked' : '' %>>
+                            <label class="form-check-label" for="isActive">Активный пользователь</label>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Дата регистрации</label>
+                            <p class="form-control-plaintext"><%= new Date(user.createdAt).toLocaleDateString() %></p>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="/users" class="btn btn-secondary me-md-2">Отмена</a>
+                            <button type="submit" class="btn btn-primary me-md-2">Сохранить изменения</button>
+                            <a href="/users/<%= user.id %>/delete" class="btn btn-danger" 
+                               onclick="return confirm('Вы уверены, что хотите удалить этого пользователя?')">Удалить</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+.form-control-plaintext {
+    padding: 0.375rem 0.75rem;
+    background-color: #f8f9fa;
+    border-radius: 0.375rem;
+}
+</style>
+<% %>

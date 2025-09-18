@@ -1,71 +1,30 @@
-<% include layouts/layout %>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodTech - Главная</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1>Добро пожаловать в FoodTech</h1>
+                <p class="lead">Система управления рестораном</p>
+                
+                <div class="mt-4">
+                    <a href="/users" class="btn btn-primary me-2">Управление пользователями</a>
+                    <a href="/health" class="btn btn-outline-secondary">Проверка здоровья системы</a>
+                </div>
 
-<div class="jumbotron bg-primary text-white p-5 rounded">
-    <h1 class="display-4">
-        <i class="bi bi-house-door"></i>
-        Добро пожаловать в WebApp
-    </h1>
-    <p class="lead">
-        Современное веб-приложение с архитектурой клиент-сервер, 
-        построенное на Node.js и Spring Boot
-    </p>
-    <hr class="my-4 bg-white">
-    <p>
-        Используйте навигационное меню для работы с приложением
-    </p>
-    <a class="btn btn-light btn-lg" href="/users" role="button">
-        <i class="bi bi-people"></i>
-        Управление пользователями
-    </a>
-</div>
-
-<div class="row mt-5">
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">
-                    <i class="bi bi-server text-primary"></i>
-                    API Сервер
-                </h5>
-                <p class="card-text">
-                    Статус подключения к Backend API:
-                    <% if (apiStatus === 'Доступен') { %>
-                        <span class="badge bg-success">Доступен</span>
-                    <% } else { %>
-                        <span class="badge bg-danger">Недоступен</span>
-                    <% } %>
-                </p>
+                <% if (typeof healthStatus !== 'undefined') { %>
+                    <div class="mt-4 alert <%= healthStatus === 'OK' ? 'alert-success' : 'alert-danger' %>">
+                        Статус API: <%= healthStatus %>
+                    </div>
+                <% } %>
             </div>
         </div>
     </div>
-    
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">
-                    <i class="bi bi-shield-check text-success"></i>
-                    Безопасность
-                </h5>
-                <p class="card-text">
-                    Приложение использует современные методы защиты данных
-                    и аутентификации пользователей
-                </p>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">
-                    <i class="bi bi-database text-info"></i>
-                    База данных
-                </h5>
-                <p class="card-text">
-                    Надежное хранение данных в PostgreSQL
-                    с поддержкой транзакций
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
+</body>
+</html>
