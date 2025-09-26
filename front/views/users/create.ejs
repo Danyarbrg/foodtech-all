@@ -1,0 +1,68 @@
+<%- include('../layouts/layout', {title: 'Добавить нового пользователя'}) %>
+
+<%- content %>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Добавить нового пользователя</h4>
+                </div>
+                <div class="card-body">
+                    <form action="/users" method="POST">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Имя пользователя</label>
+                            <input type="text" class="form-control" id="name" name="name" 
+                                   value="<%= locals.user ? user.name : '' %>" 
+                                   required placeholder="Введите имя">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email адрес</label>
+                            <input type="email" class="form-control" id="email" name="email" 
+                                   value="<%= locals.user ? user.email : '' %>" 
+                                   required placeholder="Введите email">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Пароль</label>
+                            <input type="password" class="form-control" id="password" name="password" 
+                                   required placeholder="Введите пароль">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="role" class="form-label">Роль</label>
+                            <select class="form-select" id="role" name="role">
+                                <option value="user">Пользователь</option>
+                                <option value="admin">Администратор</option>
+                                <option value="moderator">Модератор</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="isActive" name="isActive" checked>
+                            <label class="form-check-label" for="isActive">Активный пользователь</label>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="/users" class="btn btn-secondary me-md-2">Отмена</a>
+                            <button type="submit" class="btn btn-primary">Создать пользователя</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+</style>
+<% %>
